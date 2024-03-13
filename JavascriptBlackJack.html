@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+	<title>Javascript BlackJack</title>
+</head>
+<body id="gameBody">
+	<p class="score" id="playerPoints"></p>
+	<p class="score" id="dealerPoints"></p>
+	<p id="title">JavaScript<br> BlackJack<br> Game</p>
+	<button id="startButton" onclick="startGame()">Start Game</button>
+	<button id="dealButton" onclick="deal()" style ="display: none;">Deal</button>
+	<button class="button" id="hitButton" onclick="hit()" style="display: none;">Hit</button>
+	<button class="button" id="stayButton" onclick="stay()" style="display: none;">Stay</button>
+	<div id="playerHand"></div>
+	<div id="dealerHand"></div>
+	<script src="script.js"></script>
+</body>
+</html>
