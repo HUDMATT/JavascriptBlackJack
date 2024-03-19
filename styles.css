@@ -193,8 +193,9 @@
 
 @media screen and (max-width: 500px) {
    #title {
-	left: 50%;
-	top: 25%;
+	text-align: center;
+	position: fixed;
+	left: 0%;
 	font-size: 45px;
    }
 #playerHand img,
