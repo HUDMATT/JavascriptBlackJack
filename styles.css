@@ -225,9 +225,10 @@
         font-size: 20px;
     }
 
-	.button:hover {
-		font-size: 25px;
-
+    .button:hover {
+	font-size: 25px;
+    }
+	
     #dealButton {
 	font-size: 30px;
     }
