@@ -151,7 +151,9 @@
 	color: #b5b5b5;
 	font-size: 53px;
 	text-decoration: none;
-	text-align: center
+	text-align: left;
+	position: fixed;
+	left: 25%;
 	animation: floatAnimation 4.5s ease-in-out infinite;
 }
    
@@ -191,6 +193,9 @@
 
 @media screen and (max-width: 500px) {
    #title {
+	text-align: center;
+	left: 50%;
+	transform: translateX(-50%);
 	font-size: 45px;
    }
 #playerHand img,
@@ -222,11 +227,11 @@
     #startButton {
         font-size: 40px;
         bottom: 20px;
-        left: 30%;
+        left: 50%;
         transform: translateX(-50%);
     }
 
     #startButton:hover {
         font-size: 25px;
     }
-}
+} 
