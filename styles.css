@@ -195,7 +195,7 @@
    #title {
 	text-align: center;
 	font-size: 45px;
-	transform: translateX(25%);
+	left: 17%;
    }
 #playerHand img,
 #dealerHand img {
