@@ -153,7 +153,7 @@
 	text-decoration: none;
 	position: fixed;
 	left: 25%;
-	top: 25%;
+	top: 5%;
 	animation: floatAnimation 4.5s ease-in-out infinite;
 }
    
@@ -227,7 +227,7 @@
     #startButton {
         font-size: 40px;
         bottom: 20px;
-        left: 50%;
+        left: 30%;
         transform: translateX(-50%);
     }
 
