@@ -94,14 +94,13 @@
 	text-decoration: none;
 	transition: font-size 0.3s ease;
 	position: fixed;
-	bottom: 40%;
-	left: 35%;
+    	left: 50%;
+   	top: 50%;
+  	transform: translate(-50%, -50%);
 }
+
 #dealButton:hover {
 	font-size: 225px;
-	transform: translate(0, 0);
-	bottom: 40%;
-	left: 35%;
 }
   
 #stayButton {
@@ -231,9 +230,7 @@
 
     #dealButton {
         font-size: 40px;
-        bottom: 20%;
-        left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
     }
 
     #dealButton:hover {
