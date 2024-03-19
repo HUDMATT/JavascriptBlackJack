@@ -45,8 +45,8 @@
 }
 
 #playerHand img, #dealerHand img {
-    width: 100px; /* Default card size for large screens */
-    margin: 5px; /* Default card margin for large screens */
+    width: 195px; /* Default card size for large screens */
+    margin: 15px; /* Default card margin for large screens */
 }
 
 #dealerPoints {
@@ -74,7 +74,7 @@
     background: none;
     font-family: "PokerFont", sans-serif;
     color: white;
-    font-size: 20px; /* Default font size for large screens */
+    font-size: 30px; /* Default font size for large screens */
     text-decoration: none;
 }
 
@@ -85,7 +85,7 @@
     border-radius: 20px; /* Default border radius for large screens */
     font-family: "PokerFont", sans-serif;
     color: #b5b5b5;
-    font-size: 16px; /* Default font size for large screens */
+    font-size: 80px; /* Default font size for large screens */
     text-decoration: none;
     cursor: pointer;
     transition: font-size 0.3s ease;
