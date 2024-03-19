@@ -151,9 +151,7 @@
 	color: #b5b5b5;
 	font-size: 53px;
 	text-decoration: none;
-	position: fixed;
-	left: 25%;
-	top: 5%;
+	text-align: center
 	animation: floatAnimation 4.5s ease-in-out infinite;
 }
    
@@ -182,7 +180,9 @@
 	font-size: 53px;
 	text-decoration: none;
 	transition: font-size 0.3s ease;
-	text-align: center;
+	position: fixed;
+	bottom: 40px; 
+	left: 25%;
 	transform: translateX(-50%); 
 }
 #startButton:hover {
