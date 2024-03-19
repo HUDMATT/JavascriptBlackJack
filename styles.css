@@ -182,9 +182,7 @@
 	font-size: 53px;
 	text-decoration: none;
 	transition: font-size 0.3s ease;
-	position: fixed;
-	bottom: 40px; 
-	left: 25%;
+	text-align: center;
 	transform: translateX(-50%); 
 }
 #startButton:hover {
@@ -193,9 +191,6 @@
 
 @media screen and (max-width: 500px) {
    #title {
-	position: fixed;
-	left: 50%;
-	transform: translateX(-50%);
 	font-size: 45px;
    }
 #playerHand img,
