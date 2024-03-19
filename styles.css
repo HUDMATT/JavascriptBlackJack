@@ -195,6 +195,7 @@
 @media screen and (max-width: 500px) {
    #title {
 	   left: 50%;
+	   right: 50%;
    }
 #playerHand img,
 #dealerHand img {
@@ -218,7 +219,7 @@
     }
 
     #dealButton:hover {
-        font-size: 130px;
+        font-size: 45px;
     }
 
     #startButton {
@@ -229,6 +230,6 @@
     }
 
     #startButton:hover {
-        font-size: 45px;
+        font-size: 25px;
     }
 }
