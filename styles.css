@@ -193,8 +193,11 @@
 }
 
 @media screen and (max-width: 500px) {
-    #playerHand img,
-    #dealerHand img {
+   #title {
+	   left: 50%;
+   }
+#playerHand img,
+#dealerHand img {
         width: 100px;
         margin: 10px;
     }
@@ -204,11 +207,11 @@
     }
 
     .button {
-        font-size: 40px;
+        font-size: 20px;
     }
 
     #dealButton {
-        font-size: 120px;
+        font-size: 40px;
         bottom: 20%;
         left: 50%;
         transform: translateX(-50%);
