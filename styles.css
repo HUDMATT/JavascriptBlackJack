@@ -8,17 +8,6 @@
   animation: pullCardAnimation 1s ease-in-out;
 }
 
-@keyframes pullCardAnimation {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 @keyframes flipCard {
   0% {
     transform: perspective(600px) rotateY(0deg);
