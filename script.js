@@ -191,6 +191,7 @@ function flipCardAnimation(cardElement, newImage) {
 	 setTimeout(() => {
     cardElement.classList.remove('flip-card');
   }, 1000);
+}
 
 //Function for the deal button, it should essentially start the game, draw two cards for the dealer and player
 function deal() {
