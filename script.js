@@ -246,7 +246,7 @@ async function stay() {
   var flipCardOver = drawCard();
   var dealerHandElement = document.getElementById("dealerHand");
   var firstCardElement = dealerHandElement.querySelector("img");
-  flipCardAnimation(firstCardElement, flipCardOver);
+  /*flipCardAnimation(firstCardElement, flipCardOver);*/
   setTimeout(() => {
     dealerHand.unshift(flipCardOver);
     displayDealerHand();
