@@ -182,17 +182,6 @@ function didDealerBust(dealerTotal) {
 	}
 }
 
-//Function for flipping card animation
-function flipCardAnimation(cardElement, newImage) {
-  cardElement.classList.add('flip-card');
-	 setTimeout(() => {
-    cardElement.src = newImage;
-  }, 500);
-	 setTimeout(() => {
-    cardElement.classList.remove('flip-card');
-  }, 1000);
-}
-
 //Function for the deal button, it should essentially start the game, draw two cards for the dealer and player
 function deal() {
 	document.getElementById("dealButton").style.display = "none";
@@ -241,53 +230,53 @@ async function hit() {
 
 //Function for the stay button, essentially it will be the dealers AI
 async function stay() {
-  dealerHand.shift();
-  dealerOrPlayer = 0;
-  var flipCardOver = drawCard();
-  var dealerHandElement = document.getElementById("dealerHand");
-  var firstCardElement = dealerHandElement.querySelector("img");
-  /*flipCardAnimation(firstCardElement, flipCardOver);*/
-  setTimeout(() => {
-    dealerHand.unshift(flipCardOver);
-    displayDealerHand();
-    dealerTotal = dealerCardPoints(flipCardOver.charAt(20), dealerTotal, dealerDrawnCards);
-    while (playerTotal > dealerTotal && dealerTotal < 17) {
-      var cardImage = drawCard();
-      dealerHand.push(cardImage);
-      await new Promise(resolve => setTimeout(resolve, 750));
-      displayDealerHand();
-      dealerTotal = dealerCardPoints(cardImage.charAt(20), dealerTotal, dealerDrawnCards);
-      console.log("Drawn Dealer Array - " + dealerDrawnCards.map(String));
-    }
-    if (dealerTotal > 21) {
-      didDealerBust(dealerTotal);
-      return;
-    } else if (dealerTotal < playerTotal && playerTotal <= 21) {
-      setTimeout(function () {
-        alert("You scored more than the dealer! You won!\nClick OK to start a new game");
-        resetGame();
-      }, 1000);
-      return;
-    } else if (dealerTotal == playerTotal) {
-      setTimeout(function () {
-        alert("The Dealer tied with you! It is a draw!\nClick OK to start a new game");
-        resetGame();
-      }, 1000);
-      return;
-    } else if ((dealerTotal > playerTotal) && (playerTotal < 21)) {
-      setTimeout(function () {
-        alert("The Dealer scored more than you! You lost!\nClick OK to start a new game");
-        resetGame();
-      }, 1000);
-      return;
-    } else {
-      setTimeout(function () {
-        alert("The Dealer scored more than you! You lost!\nClick OK to start a new game");
-        resetGame();
-      }, 1000);
-      return;
-    }
-  }, 1000);
+	dealerHand.shift();
+	dealerOrPlayer = 0;
+	var flipCardOver = drawCard();
+	dealerHand.unshift(flipCardOver);
+	displayDealerHand();
+	dealerTotal = dealerCardPoints(flipCardOver.charAt(20), dealerTotal, dealerDrawnCards);
+	while (playerTotal > dealerTotal && dealerTotal < 17) {
+		var cardImage = drawCard();
+		dealerHand.push(cardImage);
+		await new Promise(resolve => setTimeout(resolve, 750));
+		displayDealerHand();
+		dealerTotal = dealerCardPoints(cardImage.charAt(20), dealerTotal, dealerDrawnCards);
+		console.log("Drawn Dealer Array - " + dealerDrawnCards.map(String));
+	}
+	if (dealerTotal > 21) {
+		didDealerBust(dealerTotal);
+		return;
+	}
+	else if (dealerTotal < playerTotal && playerTotal <= 21) {
+		setTimeout(function () {
+		alert("You scored more than the dealer! You won!\nClick OK to start a new game");
+		resetGame();
+		}, 1000);
+		return;
+	}
+	else if (dealerTotal == playerTotal) {
+		setTimeout(function () {
+		alert("The Dealer tied with you! It is a draw!\nClick OK to start a new game");
+		resetGame();
+		}, 1000);
+		return;
+	}
+	else if ((dealerTotal > playerTotal) && (playerTotal < 21)) {
+		setTimeout(function () {
+		alert("The Dealer scored more than you! You lost!\nClick OK to start a new game");
+		resetGame();
+		}, 1000);
+		return;
+	}
+	else {
+	setTimeout(function () {
+		alert("The Dealer scored more than you! You lost!\nClick OK to start a new game");
+		resetGame();
+		}, 1000);
+		return;
+	}
+	
 }
 	
 //Function for rendering the players hand
