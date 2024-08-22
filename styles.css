@@ -8,20 +8,15 @@
   animation: pullCardAnimation 1s ease-in-out;
 }
 
-@keyframes flipCard {
+@keyframes pullCardAnimation {
   0% {
-    transform: perspective(600px) rotateY(0deg);
-  }
-  50% {
-    transform: perspective(600px) rotateY(90deg);
+    transform: translateY(-100%);
+    opacity: 0;
   }
   100% {
-    transform: perspective(600px) rotateY(180deg);
+    transform: translateY(0);
+    opacity: 1;
   }
-}
-
-.flip-card {
-  animation: flipCard 1s forwards;
 }
 	
 #gameBody {
