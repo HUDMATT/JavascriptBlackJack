@@ -233,4 +233,113 @@
     #startButton:hover {
         font-size: 25px;
     }
-} 
+}
+
+#betControls {
+	position: fixed;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 10px;
+}
+
+#increaseBetButton, #decreaseBetButton {
+	-webkit-text-stroke: 2px black;
+	background: #ff1212;
+	background-image: -webkit-linear-gradient(top, #ff1212, #9e2929);
+	background-image: -moz-linear-gradient(top, #ff1212, #9e2929);
+	background-image: -ms-linear-gradient(top, #ff1212, #9e2929);
+	background-image: -o-linear-gradient(top, #ff1212, #9e2929);
+	background-image: linear-gradient(to bottom, #ff1212, #9e2929);
+	-webkit-border-radius: 37;
+	-moz-border-radius: 37;
+	border-radius: 37px;
+	font-family: "PokerFont", sans-serif;
+	color: #b5b5b5;
+	font-size: 20px;
+	text-decoration: none;
+	transition: font-size 0.3s ease;
+}
+
+    #increaseBetButton:hover, #decreaseBetButton:hover {
+        font-size: 25px;
+    }
+
+#currentBet {
+	-webkit-text-stroke: 1px black;
+	text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	padding: 0;
+	border: none;
+	background: none;
+	font-family: "PokerFont", sans-serif;
+	color: white;
+	font-size: 30px;
+	text-decoration: none;
+}
+
+#resultScreen {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: rgba(0, 0, 0, 0.8);
+	padding: 20px;
+	border-radius: 10px;
+	text-align: center;
+	color: white;
+	font-family: "PokerFont", sans-serif;
+}
+
+#resultMessage, #resultCash {
+	font-size: 30px;
+	margin: 10px 0;
+}
+
+#dealAgainButton, #quitButton {
+	margin: 10px;
+	font-size: 20px;
+	padding: 10px;
+	border-radius: 10px;
+	background: #ff1212;
+	color: #b5b5b5;
+	border: none;
+	cursor: pointer;
+}
+
+	#dealAgainButton:hover, #quitButton:hover {
+		font-size: 25px;
+	}
+
+#lostScreen {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: rgba(0, 0, 0, 0.8);
+	padding: 20px;
+	border-radius: 10px;
+	text-align: center;
+	color: white;
+	font-family: "PokerFont", sans-serif;
+}
+
+#lostMessage {
+	font-size: 30px;
+	margin: 10px 0;
+}
+
+#restartButton {
+	margin: 10px;
+	font-size: 20px;
+	padding: 10px;
+	border-radius: 10px;
+	background: #ff1212;
+	color: #b5b5b5;
+	border: none;
+	cursor: pointer;
+}
+
+	#restartButton:hover {
+		font-size: 25px;
+	}
