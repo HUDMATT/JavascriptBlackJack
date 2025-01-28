@@ -358,6 +358,7 @@ function resetGame() {
     playerCash = 100;
     resetHand();
     document.getElementById("playerCash").innerHTML = "Player Cash: $" + playerCash;
+    document.getElementById("lostScreen").style.display = "none";
 }
 
 //Function to show the result screen
