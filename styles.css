@@ -1,80 +1,80 @@
 @font-face {
-	font-family: 'PokerFont';
-	src: url('PokerFont.woff2') format('woff2'),
-		url('PokerFont.woff') format('woff');
+    font-family: 'PokerFont';
+    src: url('../Fonts/PokerFont.woff2') format('woff2'),
+        url('../Fonts/PokerFont.woff') format('woff');
 }
-	
-	.card-animation {
-  animation: pullCardAnimation 1s ease-in-out;
+
+.card-animation {
+    animation: pullCardAnimation 1s ease-in-out;
 }
 
 @keyframes pullCardAnimation {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
-	
+
 #gameBody {
-	background-image: url('startMenuBackground.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+    background-image: url('../Images/startMenuBackground.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
-	
+
 #dealerHand {
     display: flex;
     justify-content: center;
-	align-items: flex-start;
-	position: absolute;
-	bottom: 90px;
+    align-items: flex-start;
+    position: absolute;
+    bottom: 90px;
 }
-	
+
 #playerHand {
     display: flex;
     justify-content: center;
-	align-items: flex-start;
-	position: absolute;
-	top: 90px;
+    align-items: flex-start;
+    position: absolute;
+    top: 90px;
 }
 
 #playerHand img, #dealerHand img {
     width: 195px; 
     margin: 15px;
 }
-	
+
 #dealerPoints {
-	position: absolute;
-	bottom: 25px;
-	left: 10px;
+    position: absolute;
+    bottom: 25px;
+    left: 10px;
 }
-	
+
 #playerPoints {
-	position: absolute;
-	top: 25px;
-	left: 10px;
+    position: absolute;
+    top: 25px;
+    left: 10px;
 }
-	
+
 .score {
-	-webkit-text-stroke: 1px black;
-	text-shadow:
+    -webkit-text-stroke: 1px black;
+    text-shadow:
        3px 3px 0 #000,
        -1px -1px 0 #000,  
        1px -1px 0 #000,
        -1px 1px 0 #000,
        1px 1px 0 #000;
-	padding: 0;
-	border: none;
-	background: none;
-	font-family: "PokerFont", sans-serif;
-	color: white;
-	font-size: 30px;
-	text-decoration: none;
- }
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: "PokerFont", sans-serif;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+}
   
   /* I cant get this button centered for some reason, I think this webkit thing messed it all up but oh well I got it close enough */
 #dealButton {

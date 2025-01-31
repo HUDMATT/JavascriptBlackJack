@@ -10,28 +10,28 @@
 	<p class="score" id="playerPoints"></p>
 	<p class="score" id="dealerPoints"></p>
 	<p id="title">JavaScript<br> BlackJack<br> Game</p>
-	<button id="startButton" onclick="startGame()">Start Game</button>
-	<button id="dealButton" onclick="deal()" style="display: none;">Deal</button>
-	<button class="button" id="hitButton" onclick="hit()" style="display: none;">Hit</button>
-	<button class="button" id="stayButton" onclick="stay()" style="display: none;">Stay</button>
+	<button id="startButton">Start Game</button>
+	<button id="dealButton" style="display: none;">Deal</button>
+	<button class="button" id="hitButton" style="display: none;">Hit</button>
+	<button class="button" id="stayButton" style="display: none;">Stay</button>
 	<div id="playerHand"></div>
 	<div id="dealerHand"></div>
 	<div id="betControls" style="display: none;">
-		<button class="button" id="increaseBetButton" onclick="increaseBet()">Increase Bet</button>
-		<button class="button" id="decreaseBetButton" onclick="decreaseBet()">Decrease Bet</button>
+		<button class="button" id="increaseBetButton">Increase Bet</button>
+		<button class="button" id="decreaseBetButton">Decrease Bet</button>
 		<div id="currentBet">Current Bet: $0</div>
 	</div>
 	<p class="score" id="playerCash"></p>
 	<div id="resultScreen" style="display: none;">
 		<p id="resultMessage"></p>
 		<p id="resultCash"></p>
-		<button class="button" id="dealAgainButton" onclick="dealAgain()">Deal Again</button>
-		<button class="button" id="quitButton" onclick="quitGame()">Quit</button>
+		<button class="button" id="dealAgainButton">Deal Again</button>
+		<button class="button" id="quitButton">Quit</button>
 	</div>
 	<div id="lostScreen" style="display: none;">
 		<p id="lostMessage">You have lost all your money!</p>
-		<button class="button" id="restartButton" onclick="resetGame()">Restart Game</button>
+		<button class="button" id="restartButton">Restart Game</button>
 	</div>
-	<script src="script.js"></script>
+	<script type="module" src="javascript/script.js"></script>
 </body>
 </html>
