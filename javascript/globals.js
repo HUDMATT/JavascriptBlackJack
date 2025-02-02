@@ -22,7 +22,7 @@ var playerDrawnCards = [];
 var dealerDrawnCards = [];
 
 // Variable to push a red card back, just for dealers first card
-var flippedCard = "https://hudmatt.github.io/JavascriptBlackJack/Images/Playing%20Card%20Images/red_card_back.png";
+var flippedCard = "../Images/Playing%20Card%20Images/red_card_back.png";
 
 //Getters and setters
 function getPlayerTotal() {
