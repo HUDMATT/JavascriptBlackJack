@@ -103,7 +103,7 @@ function deal() {
         setDealerHand(dealerHand);
         setTimeout(function () {
             displayDealerHand();
-            setDealerTotal(dealerCardPoints(cardImageDeal.charAt(30), getDealerTotal(), getDealerDrawnCards()));
+            setDealerTotal(dealerCardPoints(cardImageDeal.charAt(27), getDealerTotal(), getDealerDrawnCards()));
             setDealerOrPlayer(1);
             var cardImagePlayer = drawCard();
             var playerHand = getPlayerHand();
@@ -111,11 +111,11 @@ function deal() {
             setPlayerHand(playerHand);
             setTimeout(function () {
                 displayPlayerHand();
-                setPlayerTotal(playerCardPoints(cardImagePlayer.charAt(30), getPlayerTotal(), getPlayerDrawnCards()));
+                setPlayerTotal(playerCardPoints(cardImagePlayer.charAt(27), getPlayerTotal(), getPlayerDrawnCards()));
                 cardImagePlayer = drawCard();
                 playerHand.push(cardImagePlayer);
                 setPlayerHand(playerHand);
-                setPlayerTotal(playerCardPoints(cardImagePlayer.charAt(30), getPlayerTotal(), getPlayerDrawnCards()));
+                setPlayerTotal(playerCardPoints(cardImagePlayer.charAt(27), getPlayerTotal(), getPlayerDrawnCards()));
                 setTimeout(function () {
                     displayPlayerHand();
                     console.log("Drawn Player Array - " + getPlayerDrawnCards().map(String));
@@ -136,14 +136,14 @@ async function stay() {
     dealerHand.unshift(flipCardOver);
     setDealerHand(dealerHand);
     displayDealerHand();
-    setDealerTotal(dealerCardPoints(flipCardOver.charAt(30), getDealerTotal(), getDealerDrawnCards()));
+    setDealerTotal(dealerCardPoints(flipCardOver.charAt(27), getDealerTotal(), getDealerDrawnCards()));
     while (getPlayerTotal() > getDealerTotal() && getDealerTotal() < 17) {
         var cardImage = drawCard();
         dealerHand.push(cardImage);
         setDealerHand(dealerHand);
         await new Promise(resolve => setTimeout(resolve, 750));
         displayDealerHand();
-        setDealerTotal(dealerCardPoints(cardImage.charAt(30), getDealerTotal(), getDealerDrawnCards()));
+        setDealerTotal(dealerCardPoints(cardImage.charAt(27), getDealerTotal(), getDealerDrawnCards()));
         console.log("Drawn Dealer Array - " + getDealerDrawnCards().map(String));
     }
     if (getDealerTotal() > 21) {
@@ -179,7 +179,7 @@ function hit() {
     var playerHand = getPlayerHand();
     playerHand.push(cardImage);
     setPlayerHand(playerHand);
-    setPlayerTotal(playerCardPoints(cardImage.charAt(30), getPlayerTotal(), getPlayerDrawnCards()));
+    setPlayerTotal(playerCardPoints(cardImage.charAt(27), getPlayerTotal(), getPlayerDrawnCards()));
     displayPlayerHand();
     didPlayerBust(getPlayerTotal());
 }
