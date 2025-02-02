@@ -23,7 +23,7 @@ function startGame() {
     document.getElementById("startButton").style.display = "none";
     document.getElementById("dealButton").style.display = "block";
     document.getElementById("betControls").style.display = "flex";
-    document.getElementById("gameBody").style.backgroundImage = "url('../Images/blackJackGameBackground.jpg')";
+    document.getElementById("gameBody").style.backgroundImage = "url('Images/blackJackGameBackground.jpg')";
     document.getElementById("playerCash").innerHTML = "Player Cash: $" + getPlayerCash();
     setCurrentBet(0);
     document.getElementById("currentBet").innerHTML = "Current Bet: $" + getCurrentBet();
@@ -243,7 +243,7 @@ function quitGame() {
     document.getElementById("startButton").style.display = "block";
     document.getElementById("dealButton").style.display = "none";
     document.getElementById("betControls").style.display = "none";
-    document.getElementById("gameBody").style.backgroundImage = "url('startMenuBackground.jpg')";
+    document.getElementById("gameBody").style.backgroundImage = "url('Images/startMenuBackground.jpg')";
     document.getElementById("title").innerHTML = 'JavaScript<br> BlackJack<br> Game';
     document.getElementById("playerCash").innerHTML = '';
 }

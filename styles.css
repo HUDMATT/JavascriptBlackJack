@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'PokerFont';
-    src: url('../Fonts/PokerFont.woff2') format('woff2'),
-        url('../Fonts/PokerFont.woff') format('woff');
+    src: url('Fonts/PokerFont.woff2') format('woff2'),
+        url('Fonts/PokerFont.woff') format('woff');
 }
 
 .card-animation {
@@ -20,7 +20,7 @@
 }
 
 #gameBody {
-    background-image: url('../Images/startMenuBackground.jpg');
+    background-image: url('Images/startMenuBackground.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

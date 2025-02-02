@@ -35,7 +35,7 @@ function getCardImage(cardNumber) {
     const cardValueIndex = cardNumber % 13;
     const suit = suits[suitIndex];
     const cardValue = cardValues[cardValueIndex];
-    return `../Images/Playing Card Images/${cardValue}_${suit}.png`;
+    return `Images/Playing Card Images/${cardValue}_${suit}.png`;
 }
 
 //Function to handle ace logic
