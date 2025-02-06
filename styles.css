@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'PokerFont';
-    src: url('Fonts/PokerFont.woff2') format('woff2'),
-        url('Fonts/PokerFont.woff') format('woff');
+    src: url('Fonts/upheavtt.woff2') format('woff2'),
+        url('Fonts/upheavtt.woff') format('woff');
 }
 
 .card-animation {
@@ -76,129 +76,115 @@
     text-decoration: none;
 }
   
-  /* I cant get this button centered for some reason, I think this webkit thing messed it all up but oh well I got it close enough */
 #dealButton {
-  -webkit-text-stroke: 2px black;
-	background: #ff1212;
-	background-image: -webkit-linear-gradient(top, #ff1212, #9e2929);
-	background-image: -moz-linear-gradient(top, #ff1212, #9e2929);
-	background-image: -ms-linear-gradient(top, #ff1212, #9e2929);
-	background-image: -o-linear-gradient(top, #ff1212, #9e2929);
-	background-image: linear-gradient(to bottom, #ff1212, #9e2929);
-	-webkit-border-radius: 37;
-	-moz-border-radius: 37;
-	border-radius: 37px;
-	font-family: "PokerFont", sans-serif;
-	color: #b5b5b5;
-	font-size: 200px;
-	text-decoration: none;
-	transition: font-size 0.3s ease;
-	position: fixed;
-    	left: 50%;
-   	top: 50%;
-  	transform: translate(-50%, -50%);
+    font-family: 'PokerFont', sans-serif;
+    background: #ff1212;
+    background-image: linear-gradient(to bottom, #ff1212, #9e2929);
+    border: 4px solid #000;
+    border-radius: 0;
+    color: #ffffff;
+    font-size: 200px;
+    text-decoration: none;
+    transition: font-size 0.3s ease;
+    image-rendering: pixelated;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #dealButton:hover {
-	font-size: 225px;
+    font-size: 225px;
 }
   
 #stayButton {
-   position: absolute;
-   bottom: 10px;
-   right: 10px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
    
 #hitButton {
-   position: absolute;
-   top: 10px;
-   right: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
-	
+    
 .button {
-	-webkit-text-stroke: 2px black;
-	background: #ff1212;
-	background-image: -webkit-linear-gradient(top, #ff1212, #9e2929);
-	background-image: -moz-linear-gradient(top, #ff1212, #9e2929);
-	background-image: -ms-linear-gradient(top, #ff1212, #9e2929);
-	background-image: -o-linear-gradient(top, #ff1212, #9e2929);
-	background-image: linear-gradient(to bottom, #ff1212, #9e2929);
-	-webkit-border-radius: 37;
-	-moz-border-radius: 37;
-	border-radius: 37px;
-	font-family: "PokerFont", sans-serif;
-	color: #b5b5b5;
-	font-size: 80px;
-	text-decoration: none;
-	transition: font-size 0.3s ease;
+    font-family: 'PokerFont', sans-serif;
+    background: #ff1212;
+    background-image: linear-gradient(to bottom, #ff1212, #9e2929);
+    border: 4px solid #000;
+    border-radius: 0;
+    color: #ffffff;
+    font-size: 80px;
+    text-decoration: none;
+    transition: font-size 0.3s ease;
+    image-rendering: pixelated;
 }
+
 .button:hover {
-	font-size: 100px;
- }
-	
+    font-size: 100px;
+}
+    
 #title {
-	-webkit-text-stroke: 2px black;
-	text-shadow:
+    -webkit-text-stroke: 2px black;
+    text-shadow:
       3px 3px 0 #000,
       -1px -1px 0 #000,  
       1px -1px 0 #000,
       -1px 1px 0 #000,
       1px 1px 0 #000;
-	padding: 0;
-	border: none;
-	background: none;
-	font-family: "PokerFont", sans-serif;
-	color: #b5b5b5;
-	font-size: 53px;
-	text-decoration: none;
-	text-align: left;
-	position: fixed;
-	left: 25%;
-	animation: floatAnimation 4.5s ease-in-out infinite;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: "PokerFont", sans-serif;
+    color: #ffffff;
+    font-size: 53px;
+    text-decoration: none;
+    text-align: left;
+    position: fixed;
+    left: 25%;
+    animation: floatAnimation 4.5s ease-in-out infinite;
 }
    
 @keyframes floatAnimation {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  }
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
   
 #startButton {
-  -webkit-text-stroke: 2px black;
-  text-shadow:
-      3px 3px 0 #000,
-      -1px -1px 0 #000,  
-      1px -1px 0 #000,
-      -1px 1px 0 #000,
-      1px 1px 0 #000;
-	padding: 0;
-	border: none;
-	background: none;
-	font-family: "PokerFont", sans-serif;
-	color: #b5b5b5;
-	font-size: 53px;
-	text-decoration: none;
-	transition: font-size 0.3s ease;
-	position: fixed;
-	bottom: 40px; 
-	left: 25%;
-	transform: translateX(-50%); 
+    font-family: 'PokerFont', sans-serif;
+    background: #ff1212;
+    background-image: linear-gradient(to bottom, #ff1212, #9e2929);
+    border: 4px solid #000;
+    border-radius: 0;
+    color: #ffffff;
+    font-size: 53px;
+    text-decoration: none;
+    transition: font-size 0.3s ease;
+    image-rendering: pixelated;
+    position: fixed;
+    bottom: 40px; 
+    left: 25%;
+    transform: translateX(-50%); 
 }
+
 #startButton:hover {
-	font-size: 60px;
+    font-size: 60px;
 }
 
 @media screen and (max-width: 500px) {
-   #title {
-	text-align: center;
-	font-size: 45px;
-	left: 17%;
-   }
-#playerHand img,
-#dealerHand img {
+    #title {
+        text-align: center;
+        font-size: 45px;
+        left: 17%;
+    }
+    #playerHand img,
+    #dealerHand img {
         width: 100px;
         margin: 10px;
     }
@@ -212,11 +198,11 @@
     }
 
     .button:hover {
-	font-size: 25px;
+        font-size: 25px;
     }
-	
+    
     #dealButton {
-	font-size: 30px;
+        font-size: 30px;
     }
 
     #dealButton:hover {
@@ -236,110 +222,107 @@
 }
 
 #betControls {
-	position: fixed;
-	bottom: 10px;
-	left: 50%;
-	transform: translateX(-50%);
-	display: flex;
-	gap: 10px;
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
 }
 
 #increaseBetButton, #decreaseBetButton {
-	-webkit-text-stroke: 2px black;
-	background: #ff1212;
-	background-image: -webkit-linear-gradient(top, #ff1212, #9e2929);
-	background-image: -moz-linear-gradient(top, #ff1212, #9e2929);
-	background-image: -ms-linear-gradient(top, #ff1212, #9e2929);
-	background-image: -o-linear-gradient(top, #ff1212, #9e2929);
-	background-image: linear-gradient(to bottom, #ff1212, #9e2929);
-	-webkit-border-radius: 37;
-	-moz-border-radius: 37;
-	border-radius: 37px;
-	font-family: "PokerFont", sans-serif;
-	color: #b5b5b5;
-	font-size: 20px;
-	text-decoration: none;
-	transition: font-size 0.3s ease;
+    font-family: 'PokerFont', sans-serif;
+    background: #ff1212;
+    background-image: linear-gradient(to bottom, #ff1212, #9e2929);
+    border: 4px solid #000;
+    border-radius: 0;
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+    transition: font-size 0.3s ease;
+    image-rendering: pixelated;
 }
 
-    #increaseBetButton:hover, #decreaseBetButton:hover {
-        font-size: 25px;
-    }
+#increaseBetButton:hover, #decreaseBetButton:hover {
+    font-size: 25px;
+}
 
 #currentBet {
-	-webkit-text-stroke: 1px black;
-	text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-	padding: 0;
-	border: none;
-	background: none;
-	font-family: "PokerFont", sans-serif;
-	color: white;
-	font-size: 30px;
-	text-decoration: none;
+    -webkit-text-stroke: 1px black;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: "PokerFont", sans-serif;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
 }
 
 #resultScreen {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background: rgba(0, 0, 0, 0.8);
-	padding: 20px;
-	border-radius: 10px;
-	text-align: center;
-	color: white;
-	font-family: "PokerFont", sans-serif;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    font-family: "PokerFont", sans-serif;
 }
 
 #resultMessage, #resultCash {
-	font-size: 30px;
-	margin: 10px 0;
+    font-size: 30px;
+    margin: 10px 0;
 }
 
 #dealAgainButton, #quitButton {
-	margin: 10px;
-	font-size: 20px;
-	padding: 10px;
-	border-radius: 10px;
-	background: #ff1212;
-	color: #b5b5b5;
-	border: none;
-	cursor: pointer;
+    margin: 10px;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 0;
+    background: #ff1212;
+    color: #ffffff;
+    border: 4px solid #000;
+    cursor: pointer;
+    image-rendering: pixelated;
 }
 
-	#dealAgainButton:hover, #quitButton:hover {
-		font-size: 25px;
-	}
+#dealAgainButton:hover, #quitButton:hover {
+    font-size: 25px;
+}
 
 #lostScreen {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background: rgba(0, 0, 0, 0.8);
-	padding: 20px;
-	border-radius: 10px;
-	text-align: center;
-	color: white;
-	font-family: "PokerFont", sans-serif;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    font-family: "PokerFont", sans-serif;
 }
 
 #lostMessage {
-	font-size: 30px;
-	margin: 10px 0;
+    font-size: 30px;
+    margin: 10px 0;
 }
 
 #restartButton {
-	margin: 10px;
-	font-size: 20px;
-	padding: 10px;
-	border-radius: 10px;
-	background: #ff1212;
-	color: #b5b5b5;
-	border: none;
-	cursor: pointer;
+    margin: 10px;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 0;
+    background: #ff1212;
+    color: #ffffff;
+    border: 4px solid #000;
+    cursor: pointer;
+    image-rendering: pixelated;
 }
 
-	#restartButton:hover {
-		font-size: 25px;
-	}
+#restartButton:hover {
+    font-size: 25px;
+}
