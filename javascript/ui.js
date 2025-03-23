@@ -19,6 +19,7 @@ import {
 
 //Function to start the game and reset the hands and scores
 function startGame() {
+    document.getElementById("cardDeck").style.display = "block";
     document.getElementById("title").innerHTML = '';
     document.getElementById("startButton").style.display = "none";
     document.getElementById("dealButton").style.display = "block";
@@ -135,8 +136,17 @@ async function stay() {
     var flipCardOver = drawCard();
     dealerHand.unshift(flipCardOver);
     setDealerHand(dealerHand);
-    displayDealerHand();
-    setDealerTotal(dealerCardPoints(flipCardOver.charAt(27), getDealerTotal(), getDealerDrawnCards()));
+    var dealerHandElement = document.getElementById("dealerHand");
+    var flippedCardElement = dealerHandElement.firstChild;
+    flippedCardElement.classList.add("flip-2-ver-right-1");
+    setTimeout(function () {
+        flippedCardElement.src = flipCardOver;
+    }, 250);
+    setTimeout(function () {
+        flippedCardElement.classList.remove("flip-2-ver-right-1");
+        displayDealerHand();
+        setDealerTotal(dealerCardPoints(flipCardOver.charAt(27), getDealerTotal(), getDealerDrawnCards()));
+    }, 500);
     while (getPlayerTotal() > getDealerTotal() && getDealerTotal() < 17) {
         var cardImage = drawCard();
         dealerHand.push(cardImage);

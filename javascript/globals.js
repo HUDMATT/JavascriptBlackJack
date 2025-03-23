@@ -13,8 +13,8 @@ var dealerOrPlayer;
 
 //Creates an array with 52 numbers, each number will later indicate a card and score
 var cardValue = [];
-for (var i = 0; i < 52; ++i) {
-    cardValue.push(i);
+for (var i = 0; i < 104; ++i) {
+    cardValue.push(i % 52);
 }
 
 // Creates a separate array for drawn cards, and for aces in case ace in deck needs to be 1 instead of 11

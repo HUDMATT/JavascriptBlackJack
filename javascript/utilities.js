@@ -140,11 +140,15 @@ function displayPlayerHand() {
     for (var i = 0; i < getPlayerHand().length; ++i) {
         var cardImageElement = document.createElement("img");
         cardImageElement.src = getPlayerHand()[i];
-
         if (i == getPlayerHand().length - 1) {
             cardImageElement.classList.add("card-animation");
         }
+        var playerHandRect = playerHandElement.getBoundingClientRect();
+        var cardX = (i * 30);
+        var cardY = 0; 
 
+        cardImageElement.style.setProperty('--card-x', `${cardX}px`);
+        cardImageElement.style.setProperty('--card-y', `${cardY}px`);
         playerHandElement.appendChild(cardImageElement);
     }
 }
@@ -157,11 +161,15 @@ function displayDealerHand() {
     for (var i = 0; i < getDealerHand().length; ++i) {
         var cardImageElement = document.createElement("img");
         cardImageElement.src = getDealerHand()[i];
-
         if (i == getDealerHand().length - 1) {
             cardImageElement.classList.add("card-animation");
         }
+        var dealerHandRect = dealerHandElement.getBoundingClientRect();
+        var cardX = (i * 30); // Adjust the horizontal offset
+        var cardY = 0; // No vertical offset needed
 
+        cardImageElement.style.setProperty('--card-x', `${cardX}px`);
+        cardImageElement.style.setProperty('--card-y', `${cardY}px`);
         dealerHandElement.appendChild(cardImageElement);
     }
 }
