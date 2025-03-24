@@ -154,20 +154,20 @@ function displayPlayerHand() {
 }
 
 //Function for rendering the dealers hand
-function displayDealerHand() {
+function displayDealerHand(isStayAction = false) {
     var dealerHandElement = document.getElementById("dealerHand");
     dealerHandElement.innerHTML = '';
 
     for (var i = 0; i < getDealerHand().length; ++i) {
         var cardImageElement = document.createElement("img");
         cardImageElement.src = getDealerHand()[i];
-        if (i == getDealerHand().length - 1) {
+        if ((i == getDealerHand().length - 1 && !isStayAction) || 
+            (i == getDealerHand().length - 1 && i > 1 && isStayAction)) {
             cardImageElement.classList.add("card-animation");
         }
         var dealerHandRect = dealerHandElement.getBoundingClientRect();
-        var cardX = (i * 30); // Adjust the horizontal offset
-        var cardY = 0; // No vertical offset needed
-
+        var cardX = (i * 30);
+        var cardY = 0;
         cardImageElement.style.setProperty('--card-x', `${cardX}px`);
         cardImageElement.style.setProperty('--card-y', `${cardY}px`);
         dealerHandElement.appendChild(cardImageElement);

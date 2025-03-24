@@ -139,23 +139,35 @@ async function stay() {
     var dealerHandElement = document.getElementById("dealerHand");
     var flippedCardElement = dealerHandElement.firstChild;
     flippedCardElement.classList.add("flip-2-ver-right-1");
+    
+    // First animation delay
     setTimeout(function () {
         flippedCardElement.src = flipCardOver;
     }, 250);
+    
+    // Wait for flip animation and add extra delay
     setTimeout(function () {
         flippedCardElement.classList.remove("flip-2-ver-right-1");
-        displayDealerHand();
+        displayDealerHand(true); 
         setDealerTotal(dealerCardPoints(flipCardOver.charAt(27), getDealerTotal(), getDealerDrawnCards()));
     }, 500);
+    
+    // Add delay after initial card flip
+    await new Promise(resolve => setTimeout(resolve, 500));
+
     while (getPlayerTotal() > getDealerTotal() && getDealerTotal() < 17) {
         var cardImage = drawCard();
         dealerHand.push(cardImage);
         setDealerHand(dealerHand);
         await new Promise(resolve => setTimeout(resolve, 750));
-        displayDealerHand();
+        displayDealerHand(true); 
         setDealerTotal(dealerCardPoints(cardImage.charAt(27), getDealerTotal(), getDealerDrawnCards()));
         console.log("Drawn Dealer Array - " + getDealerDrawnCards().map(String));
+        await new Promise(resolve => setTimeout(resolve, 500));
     }
+
+    await new Promise(resolve => setTimeout(resolve, 500));
+
     if (getDealerTotal() > 21) {
         didDealerBust(getDealerTotal());
         return;
