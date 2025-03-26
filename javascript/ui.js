@@ -7,7 +7,9 @@ import {
     getDealerHand, setDealerHand,
     getDealerDrawnCards, setDealerOrPlayer,
     flippedCard, getPlayerDrawnCards,
-    setPlayerDrawnCards, setDealerDrawnCards
+    setPlayerDrawnCards, setDealerDrawnCards,
+    getCardValue,
+    setCardValue
 } from './globals.js';
 
 import {
@@ -85,6 +87,15 @@ function deal() {
     if (getCurrentBet() <= 0 || getCurrentBet() > getPlayerCash()) {
         alert("Invalid bet amount. Please enter a valid amount.");
         return;
+    }
+    var deckSize = getCardValue();
+    console.log("Deck Size: " + deckSize.length);
+    if (deckSize.length <= 20){ //Shuffles deck when cards are low
+        for (var i = 0; i < 104; ++i) 
+            deckSize.push(i % 52);
+        setCardValue(deckSize);
+        console.log("Shuffling deck");
+        console.log("New Deck Size: " + deckSize.length);
     }
     document.getElementById("playerCash").innerHTML = "Player Cash: $" + getPlayerCash();
     document.getElementById("dealButton").style.display = "none";
