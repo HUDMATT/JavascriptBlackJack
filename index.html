@@ -16,11 +16,36 @@
 	<button class="button" id="stayButton" style="display: none;">Stay</button>
 	<div id="playerHand"></div>
 	<div id="dealerHand"></div>
-	<img id="cardDeck" src="Images/Playing Card Images/card_deck.png " style="display: none;"></img>
+	<img id="cardDeck" src="Images/CardStyles/Default/card_deck.png " style="display: none;"></img>
 	<div id="betControls" style="display: none;">
 		<button class="button" id="increaseBetButton">Increase Bet</button>
 		<button class="button" id="decreaseBetButton">Decrease Bet</button>
 		<div id="currentBet">Current Bet: $0</div>
+	</div>
+	<button class="button" id="openMenu">Menu</button>
+	<div id="menuScreen" style="display: none;">
+		<p id="menuTitle">Menu</p>
+		<button class="menuButton" id="signIn">Sign In</button>
+		<button class="menuButton" id="createAccount">Create Account</button>
+		<button class="menuButton" id="shopButton">Shop</button>
+		<button class="menuButton" id="selectStyle">Change Style</button>
+		<button class="menuButton" id="closeMenu">Close Menu</button>
+	</div>
+	<div id="shopScreen" style="display: none;">
+		<p id="shopTitle">Shop</p>
+		<div id="cardStyles">
+			<button class="shopItem" data-style="blackandwhite">Black and White - $150</button>
+			<button class="shopItem" data-style="dark">Dark Cards - $200</button>
+			<button class="shopItem" data-style="gold">Gold Cards - $250</button>
+		</div>
+		<button class="menuButton" id="closeShop">Close Shop</button>
+	</div>
+	<div id="styleScreen" style="display: none;">
+		<p id="styleTitle">Change Style</p>
+		<button class="menuButton" id="defaultStyle">Default</button>
+		<button class="menuButton" id="blackandwhiteStyle" style="display: none;">Black and White</button>
+		<button class="menuButton" id="darkStyle" style="display: none;">Dark</button>
+		<button class="menuButton" id="goldStyle" style="display: none;">Gold</button>
 	</div>
 	<p class="score" id="playerCash"></p>
 	<div id="resultScreen" style="display: none;">

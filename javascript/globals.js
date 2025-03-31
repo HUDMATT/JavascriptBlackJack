@@ -4,6 +4,15 @@ var dealerTotal = 0;
 var playerCash = 100;
 var currentBet = 0;
 
+//Booleans for card styles
+var defaultStyle = true;
+var blackAndWhiteStyle = true;
+var darkStyle = true;
+var goldStyle = true;
+
+//Card style variable
+var cardStyle = "Default";
+
 //Creates an array for the players and dealers hand, I will push more into the array if the player chooses to hit
 var playerHand = [];
 var dealerHand = [];
@@ -22,7 +31,7 @@ var playerDrawnCards = [];
 var dealerDrawnCards = [];
 
 // Variable to push a red card back, just for dealers first card
-var flippedCard = "Images/Playing Card Images/red_card_back.png";
+var flippedCard = "Images/CardStyles/Default/red_card_back.png";
 
 //Getters and setters
 function getPlayerTotal() {
@@ -86,6 +95,42 @@ function setDealerDrawnCards(cards) {
     dealerDrawnCards = cards;
 }
 
+function getDefaultStyle() {
+    return defaultStyle;
+}
+function setDefaultStyle(style) {
+    defaultStyle = style;
+}
+function getBlackAndWhiteStyle() {
+    return blackAndWhiteStyle;
+}
+function setBlackAndWhiteStyle(style) {
+    blackAndWhiteStyle = style;
+}
+function getDarkStyle() {
+    return darkStyle;
+}
+function setDarkStyle(style) {
+    darkStyle = style;
+}
+function getGoldStyle() {
+    return goldStyle;
+}
+function setGoldStyle(style) {
+    goldStyle = style;
+}
+
+function getCardStyle() {
+    return cardStyle;
+}
+function setCardStyle(style) {
+    cardStyle = style;
+}
+
+function setFlippedCard(card) {
+    flippedCard = card;
+}
+
 export {
     getPlayerTotal, setPlayerTotal,
     getDealerTotal, setDealerTotal,
@@ -97,5 +142,10 @@ export {
     getCardValue, setCardValue,
     getPlayerDrawnCards, setPlayerDrawnCards,
     getDealerDrawnCards, setDealerDrawnCards,
-    flippedCard
+    getDefaultStyle, setDefaultStyle,
+    getBlackAndWhiteStyle, setBlackAndWhiteStyle,
+    getDarkStyle, setDarkStyle,
+    getGoldStyle, setGoldStyle,
+    getCardStyle, setCardStyle,
+    flippedCard, setFlippedCard
 };

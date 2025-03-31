@@ -3,7 +3,7 @@ import {
     getDealerDrawnCards, setDealerDrawnCards,
     getDealerOrPlayer, getDealerHand,
     getCardValue, setCardValue,
-    getPlayerHand
+    getPlayerHand, getCardStyle
 } from './globals.js';
 
 //Function to draw card, and then splice from array so previous card can no longer be drawn 
@@ -35,7 +35,7 @@ function getCardImage(cardNumber) {
     const cardValueIndex = cardNumber % 13;
     const suit = suits[suitIndex];
     const cardValue = cardValues[cardValueIndex];
-    return `Images/Playing Card Images/${cardValue}_${suit}.png`;
+    return `Images/CardStyles/${getCardStyle()}/${cardValue}_${suit}.png`;
 }
 
 //Function to handle ace logic
