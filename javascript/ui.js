@@ -363,6 +363,99 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("gameBody").style.backgroundImage = `url('Images/CardStyles/${getCardStyle()}/blackJackGameBackground.jpg')`;
         document.getElementById("styleScreen").style.display = "none";
     });
+
+    document.getElementById("shopButton").addEventListener("click", () => {
+        document.getElementById("menuScreen").style.display = "none";
+        document.getElementById("shopScreen").style.display = "block"
+        if (getBlackAndWhiteStyle() == true) {
+            document.getElementById("blackandwhiteStyle").style.display = "none";
+        }
+        if (getDarkStyle() == true) {
+            document.getElementById("darkStyle").style.display = "none";
+        }
+        if (getGoldStyle() == true) {
+            document.getElementById("goldStyle").style.display = "none";
+        }
+    })
+
+    document.getElementById("blackandwhitebuy").addEventListener("click", () => {
+        if (getPlayerCash()> 150) {
+            setPlayerCash(getPlayerCash() - 150);
+            setBlackAndWhiteStyle(true);
+            document.getElementById("blackandwhitebuy").style.display = "none";
+            document.getElementById("blackandwhiteStyle").style.display = "block";
+        }
+        document.getElementById("playerCash").innerHTML = "Player Cash: $" + getPlayerCash();
+    });
+
+    document.getElementById("darkbuy").addEventListener("click", () => {
+        if (getPlayerCash() > 200) {
+            setPlayerCash(getPlayerCash() - 200);
+            setDarkStyle(true);
+            document.getElementById("darkbuy").style.display = "none";
+            document.getElementById("darkStyle").style.display = "block";
+        }
+        document.getElementById("playerCash").innerHTML = "Player Cash: $" + getPlayerCash();
+    });
+
+    document.getElementById("goldbuy").addEventListener("click", () => {
+        if (getPlayerCash() > 250) {
+            setPlayerCash(getPlayerCash() - 250);
+            setGoldStyle(true);
+            document.getElementById("goldbuy").style.display = "none";
+            document.getElementById("goldStyle").style.display = "block";
+        }
+        document.getElementById("playerCash").innerHTML = "Player Cash: $" + getPlayerCash();
+    });
+
+    document.getElementById("closeShop").addEventListener("click", () => {
+        document.getElementById("shopScreen").style.display = "none";
+        document.getElementById("menuScreen").style.display = "block";
+    });
+
+    document.getElementById("signIn").addEventListener("click", () => {
+        document.getElementById("menuScreen").style.display = "none";
+        document.getElementById("signInScreen").style.display = "block";
+    });
+
+    document.getElementById("closeSignIn").addEventListener("click", () => {
+            document.getElementById("signInScreen").style.display = "none";
+            document.getElementById("menuScreen").style.display = "block";
+            document.getElementById("signInError").style.display = "none";
+            document.getElementById("signInForm").reset();
+    });
+
+    document.getElementById("signInForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        document.getElementById("signInError").style.display = "block";
+    });
+
+    document.getElementById("createAccount").addEventListener("click", () => {
+        document.getElementById("menuScreen").style.display = "none";
+        document.getElementById("createAccountScreen").style.display = "block";
+    });
+    
+    document.getElementById("closeCreateAccount").addEventListener("click", () => {
+        document.getElementById("createAccountScreen").style.display = "none";
+        document.getElementById("menuScreen").style.display = "block";
+        document.getElementById("createAccountError").style.display = "none";
+        document.getElementById("createAccountForm").reset();
+    });
+    
+    document.getElementById("createAccountForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const password = document.getElementById("newPassword").value;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        
+        if (passwordRegex.test(password)) {
+            document.getElementById("createAccountError").textContent = "Work in progress";
+            document.getElementById("createAccountError").style.display = "block";
+        } else {
+            document.getElementById("createAccountError").textContent = "Password does not meet requirements";
+            document.getElementById("createAccountError").style.display = "block";
+        }
+    });
+
 });
 
 export {

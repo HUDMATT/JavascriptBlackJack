@@ -34,18 +34,45 @@
 	<div id="shopScreen" style="display: none;">
 		<p id="shopTitle">Shop</p>
 		<div id="cardStyles">
-			<button class="shopItem" data-style="blackandwhite">Black and White - $150</button>
-			<button class="shopItem" data-style="dark">Dark Cards - $200</button>
-			<button class="shopItem" data-style="gold">Gold Cards - $250</button>
+			<button class="shopItem" id="blackandwhitebuy">Black and White - $150</button>
+			<button class="shopItem" id="darkbuy">Dark Cards - $200</button>
+			<button class="shopItem" id="goldbuy">Gold Cards - $250</button>
 		</div>
 		<button class="menuButton" id="closeShop">Close Shop</button>
 	</div>
 	<div id="styleScreen" style="display: none;">
 		<p id="styleTitle">Change Style</p>
-		<button class="menuButton" id="defaultStyle">Default</button>
-		<button class="menuButton" id="blackandwhiteStyle" style="display: none;">Black and White</button>
-		<button class="menuButton" id="darkStyle" style="display: none;">Dark</button>
-		<button class="menuButton" id="goldStyle" style="display: none;">Gold</button>
+		<button class="styleButton" id="defaultStyle">Default</button>
+		<button class="styleButton" id="blackandwhiteStyle" style="display: none;">Black and White</button>
+		<button class="styleButton" id="darkStyle" style="display: none;">Dark</button>
+		<button class="styleButton" id="goldStyle" style="display: none;">Gold</button>
+	</div>
+	<div id="signInScreen" style="display: none;">
+        <p id="signInTitle">Sign In</p>
+        <form id="signInForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" class="menuButton">Sign In</button>
+            <p id="signInError" style="display: none; color: red;">Incorrect username or password</p>
+        </form>
+        <button class="menuButton" id="closeSignIn">Back</button>
+    </div>
+	<div id="createAccountScreen" style="display: none;">
+		<p id="createAccountTitle">Create Account</p>
+		<form id="createAccountForm">
+			<input type="text" id="newUsername" placeholder="Username" required>
+			<input type="password" id="newPassword" placeholder="Password" required>
+			<p id="passwordRequirements">
+				Password must contain:<br>
+				- At least 8 characters<br>
+				- Numbers<br>
+				- Uppercase & lowercase letters<br>
+				- 1 special character
+			</p>
+			<button type="submit" class="menuButton">Create Account</button>
+			<p id="createAccountError" style="display: none;">Work in progress</p>
+		</form>
+		<button class="menuButton" id="closeCreateAccount">Back</button>
 	</div>
 	<p class="score" id="playerCash"></p>
 	<div id="resultScreen" style="display: none;">

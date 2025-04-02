@@ -6,9 +6,9 @@ var currentBet = 0;
 
 //Booleans for card styles
 var defaultStyle = true;
-var blackAndWhiteStyle = true;
-var darkStyle = true;
-var goldStyle = true;
+var blackAndWhiteStyle = false;
+var darkStyle = false;
+var goldStyle = false;
 
 //Card style variable
 var cardStyle = "Default";

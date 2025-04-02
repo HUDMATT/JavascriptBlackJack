@@ -453,21 +453,55 @@ html, body {
     margin-bottom: 20px;
 }
 
-.shopItem {
+#blackandwhitebuy {
     display: block;
     margin: 10px auto;
     font-size: 20px;
     padding: 10px;
     border-radius: 5px;
-    background: #ff1212;
-    color: white;
+    background: white;
+    color: #000000;
     border: 2px solid black;
     cursor: pointer;
     filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
 }
 
-.shopItem:hover {
-    background: #9e2929;
+#blackandwhitebuy:hover {
+    background: #929292;
+}
+
+#darkbuy {
+    display: block;
+    margin: 10px auto;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #363636;
+    color: rgb(211, 211, 211);
+    border: 2px solid black;
+    cursor: pointer;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
+}
+
+#darkbuy:hover {
+    background: #000000;
+}
+
+#goldbuy {
+    display: block;
+    margin: 10px auto;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #ffd700;
+    color: rgb(116, 94, 0);
+    border: 2px solid black;
+    cursor: pointer;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
+}
+
+#goldbuy:hover {
+    background: #b8860b;
 }
 
 #closeShop {
@@ -487,4 +521,179 @@ html, body {
     color: white;
     font-family: "PokerFont", sans-serif;
     z-index: 999;
+}
+
+#defaultStyle {
+    background: #ff1212;
+    color: #ffffff;
+}
+
+#defaultStyle:hover {
+    background: #9e2929;
+}
+
+.styleButton {
+    display: block;
+    margin: 10px auto;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid black;
+    cursor: pointer;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
+}
+
+#blackandwhiteStyle {
+    background: white;
+    color: #000000;
+}
+
+#blackandwhiteStyle:hover {
+    background: #929292;
+}
+
+#darkStyle {
+    background: #363636;
+    color: rgb(211, 211, 211);
+}
+
+#darkStyle:hover {
+    background: #000000;
+}
+
+#goldStyle {
+    background: #ffd700;
+    color: rgb(116, 94, 0);
+}
+
+#goldStyle:hover {
+    background: #b8860b;
+}
+
+#signInScreen {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    font-family: "PokerFont", sans-serif;
+    z-index: 999;
+}
+
+#signInTitle {
+    font-family: "PokerFont", sans-serif;
+    color: white;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+#signInForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#signInForm input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-family: Arial, sans-serif;
+}
+
+#signInError {
+    font-family: Arial, sans-serif;
+    margin-top: 10px;
+    color: #ff1212;
+}
+
+#signInForm button {
+    margin-top: 10px;
+    font-family: 'PokerFont', sans-serif;
+    background: #ff1212;
+    background-image: linear-gradient(to bottom, #ff1212, #9e2929);
+    border: 4px solid #000;
+    border-radius: 0;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#signInForm button:hover {
+    font-size: 25px;
+}
+
+#createAccountScreen {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    font-family: "PokerFont", sans-serif;
+    z-index: 999;
+}
+
+#createAccountTitle {
+    font-family: "PokerFont", sans-serif;
+    color: white;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+#createAccountForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#createAccountForm input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-family: Arial, sans-serif;
+}
+
+#passwordRequirements {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #cccccc;
+    text-align: left;
+    margin: 5px 0;
+}
+
+#createAccountError {
+    font-family: Arial, sans-serif;
+    margin-top: 10px;
+    color: #ff1212;
+}
+
+#createAccountForm button {
+    margin-top: 10px;
+    font-family: 'PokerFont', sans-serif;
+    background: #ff1212;
+    background-image: linear-gradient(to bottom, #ff1212, #9e2929);
+    border: 4px solid #000;
+    border-radius: 0;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#createAccountForm button:hover {
+    font-size: 25px;
 }
