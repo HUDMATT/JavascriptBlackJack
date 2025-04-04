@@ -151,10 +151,12 @@ app.post('/api/signout', async (req, res) => {
     res.json({ message: 'Signed out successfully' });
 });
 
-// Add update player data endpoint
+// Update player data endpoint
 app.post('/api/update-player', async (req, res) => {
     try {
         const { username, playerCash, styles } = req.body;
+        
+        console.log('Updating player data:', { username, playerCash, styles }); // Debug log
 
         const [result] = await pool.execute(
             `UPDATE Users 
@@ -164,7 +166,7 @@ app.post('/api/update-player', async (req, res) => {
                  goldstyle = ? 
              WHERE username = ?`,
             [
-                playerCash,
+                parseInt(playerCash),
                 styles.blackAndWhite ? 1 : 0,
                 styles.dark ? 1 : 0,
                 styles.gold ? 1 : 0,
@@ -176,7 +178,16 @@ app.post('/api/update-player', async (req, res) => {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        res.json({ message: 'Player data updated successfully' });
+        // Verify update
+        const [updated] = await pool.execute(
+            'SELECT player_cash FROM Users WHERE username = ?',
+            [username]
+        );
+
+        res.json({ 
+            message: 'Player data updated successfully',
+            updatedCash: updated[0].player_cash
+        });
     } catch (error) {
         console.error('Error updating player data:', error);
         res.status(500).json({ error: 'Failed to update player data' });
