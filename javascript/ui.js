@@ -420,6 +420,9 @@ async function showResultScreen(message, cashChange) {
     const username = getCurrentUsername();
     if (username) {
         try {
+            // Update player data
+            await updatePlayerData();
+
             // Update leaderboard stats
             await fetch('http://localhost:3000/api/leaderboard/update', {
                 method: 'POST',
@@ -434,17 +437,15 @@ async function showResultScreen(message, cashChange) {
                     bankrupt: getPlayerCash() <= 0
                 })
             });
-
-            // Update UI with username
-            document.getElementById("playerCash").innerHTML = 
-                `${username}'s Cash: $${getPlayerCash()}`;
         } catch (error) {
-            console.error('Error updating stats:', error);
+            console.error('Error updating game data:', error);
         }
-    } else {
-        document.getElementById("playerCash").innerHTML = 
-            `Player Cash: $${getPlayerCash()}`;
     }
+
+    // Update display
+    document.getElementById("playerCash").innerHTML = username ? 
+        `${username}'s Cash: $${getPlayerCash()}` : 
+        `Player Cash: $${getPlayerCash()}`;
 
     if (getPlayerCash() <= 0) {
         showLostScreen();
@@ -712,8 +713,12 @@ async function updatePlayerData() {
         if (!response.ok) {
             throw new Error('Failed to update player data');
         }
+
+        const data = await response.json();
+        console.log('Player data updated:', data); // Debug log
     } catch (error) {
         console.error('Error updating player data:', error);
+        throw error;
     }
 }
 
@@ -824,6 +829,11 @@ export {
     quitGame,
     resetGame
 };
+
+
+
+
+
 
 
 
