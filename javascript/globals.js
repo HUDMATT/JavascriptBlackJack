@@ -33,6 +33,9 @@ var dealerDrawnCards = [];
 // Variable to push a red card back, just for dealers first card
 var flippedCard = "Images/CardStyles/Default/red_card_back.png";
 
+// Variable to store the current username
+var currentUsername = '';
+
 //Getters and setters
 function getPlayerTotal() {
     return playerTotal;
@@ -131,6 +134,14 @@ function setFlippedCard(card) {
     flippedCard = card;
 }
 
+function getCurrentUsername() {
+    return currentUsername;
+}
+
+function setCurrentUsername(username) {
+    currentUsername = username;
+}
+
 export {
     getPlayerTotal, setPlayerTotal,
     getDealerTotal, setDealerTotal,
@@ -147,5 +158,7 @@ export {
     getDarkStyle, setDarkStyle,
     getGoldStyle, setGoldStyle,
     getCardStyle, setCardStyle,
-    flippedCard, setFlippedCard
+    flippedCard, setFlippedCard,
+    getCurrentUsername,
+    setCurrentUsername
 };

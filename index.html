@@ -26,9 +26,11 @@
 	<div id="menuScreen" style="display: none;">
 		<p id="menuTitle">Menu</p>
 		<button class="menuButton" id="signIn">Sign In</button>
+		<button class="menuButton" id="signOut" style="display: none;">Sign Out</button>
 		<button class="menuButton" id="createAccount">Create Account</button>
 		<button class="menuButton" id="shopButton">Shop</button>
 		<button class="menuButton" id="selectStyle">Change Style</button>
+		<button class="menuButton" id="leaderboard">Leaderboards</button>
 		<button class="menuButton" id="closeMenu">Close Menu</button>
 	</div>
 	<div id="shopScreen" style="display: none;">
@@ -84,6 +86,33 @@
 	<div id="lostScreen" style="display: none;">
 		<p id="lostMessage">You have lost all your money!</p>
 		<button class="button" id="restartButton">Restart Game</button>
+	</div>
+	<div id="leaderboardScreen" style="display: none;">
+		<h2>Leaderboards</h2>
+		<div id="globalLeaderboard">
+			<h3>Global Top 5</h3>
+			<table id="globalLeaderboardTable">
+				<thead>
+					<tr>
+						<th>Rank</th>
+						<th>Player</th>
+						<th>Total Winnings</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+		<div id="personalStats" style="display: none;">
+			<h3>Personal Statistics</h3>
+			<p>Highest Cash: $<span id="highestCash">0</span></p>
+			<p>Total Cash Earned: $<span id="totalCashEarned">0</span></p>
+			<p>Times Bankrupt: <span id="timesBankrupt">0</span></p>
+			<p>Global Rank: <span id="playerRank">0</span></p>
+			<p>Games Played: <span id="gamesPlayed">0</span></p>
+			<p>Games Won: <span id="gamesWon">0</span></p>
+			<p>Win Rate: <span id="winRate">0</span>%</p>
+		</div>
+		<button class="button" id="closeLeaderboard">Close</button>
 	</div>
 	<script type="module" src="javascript/script.js"></script>
 </body>

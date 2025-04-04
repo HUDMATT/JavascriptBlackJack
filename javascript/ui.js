@@ -15,7 +15,9 @@ import {
     getGoldStyle, setGoldStyle,
     setCardStyle,
     setFlippedCard,
-    getCardStyle
+    getCardStyle,
+    setCurrentUsername,
+    getCurrentUsername
 } from './globals.js';
 
 import {
@@ -25,6 +27,157 @@ import {
     displayDealerHand,
 } from './utilities.js';
 
+async function handleCreateAccount(event) {
+    event.preventDefault();
+    
+    try {
+        const username = document.getElementById('newUsername').value;
+        const password = document.getElementById('newPassword').value;
+
+        if (!username || !password) {
+            throw new Error('Username and password are required');
+        }
+
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(password)) {
+            document.getElementById('createAccountError').textContent = 'Password does not meet requirements';
+            document.getElementById('createAccountError').style.display = 'block';
+            document.getElementById('createAccountError').style.color = '#ff1212';
+            return;
+        }
+
+        const response = await fetch('http://localhost:3000/api/create-account', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || 'Failed to create account');
+        }
+
+        document.getElementById('createAccountError').textContent = 'Account created successfully!';
+        document.getElementById('createAccountError').style.display = 'block';
+        document.getElementById('createAccountError').style.color = '#4CAF50';
+
+        setTimeout(() => {
+            document.getElementById('createAccountScreen').style.display = 'none';
+            document.getElementById('signInScreen').style.display = 'block';
+            document.getElementById('createAccountForm').reset();
+        }, 2000);
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('createAccountError').textContent = error.message;
+        document.getElementById('createAccountError').style.display = 'block';
+        document.getElementById('createAccountError').style.color = '#ff1212';
+    }
+}
+
+async function handleSignIn(event) {
+    event.preventDefault();
+    
+    try {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (!username || !password) {
+            throw new Error('Username and password are required');
+        }
+
+        const response = await fetch('http://localhost:3000/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({ username, password })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Login failed');
+        }
+
+        const data = await response.json();
+        handleSignInSuccess(data);
+        
+    } catch (error) {
+        console.error('Login error:', error);
+        document.getElementById('signInError').textContent = error.message;
+        document.getElementById('signInError').style.display = 'block';
+        document.getElementById('signInError').style.color = '#ff1212';
+    }
+}
+
+function handleSignInSuccess(data) {
+    setCurrentUsername(data.username);
+    setPlayerCash(data.playerCash);
+    setBlackAndWhiteStyle(data.styles.blackAndWhite);
+    setDarkStyle(data.styles.dark);
+    setGoldStyle(data.styles.gold);
+
+    // Reset shop display
+    document.getElementById("blackandwhitebuy").style.display = data.styles.blackAndWhite ? "none" : "block";
+    document.getElementById("darkbuy").style.display = data.styles.dark ? "none" : "block";
+    document.getElementById("goldbuy").style.display = data.styles.gold ? "none" : "block";
+    
+    // Reset style buttons display
+    document.getElementById("blackandwhiteStyle").style.display = data.styles.blackAndWhite ? "block" : "none";
+    document.getElementById("darkStyle").style.display = data.styles.dark ? "block" : "none";
+    document.getElementById("goldStyle").style.display = data.styles.gold ? "block" : "none";
+
+    // Apply last used style
+    applyCardStyle(data.lastStyle || 'Default');
+
+    // Update UI
+    document.getElementById('signInScreen').style.display = 'none';
+    document.getElementById('menuScreen').style.display = 'block';
+    document.getElementById('signIn').style.display = 'none';
+    document.getElementById('signOut').style.display = 'block';
+    document.getElementById('createAccount').style.display = 'none';
+    document.getElementById('playerCash').innerHTML = `${data.username}'s Cash: $${getPlayerCash()}`;
+    document.getElementById('signInForm').reset();
+}
+
+// Add helper function to apply card style
+function applyCardStyle(style) {
+    setCardStyle(style);
+    document.getElementById("cardDeck").src = `Images/CardStyles/${style}/card_deck.png`;
+    setFlippedCard(`Images/CardStyles/${style}/red_card_back.png`);
+    
+    // Update button styles based on card style
+    const buttons = document.querySelectorAll('.button, .menuButton, #startButton, #dealButton, #openMenu');
+    
+    switch(style) {
+        case 'Default':
+            buttons.forEach(button => {
+                button.style.background = '#ff1212';
+                button.style.backgroundImage = 'linear-gradient(to bottom, #ff1212, #9e2929)';
+            });
+            break;
+        case 'BlackAndWhite':
+        case 'Dark':
+            buttons.forEach(button => {
+                button.style.background = '#4a4a4a';
+                button.style.backgroundImage = 'linear-gradient(to bottom, #4a4a4a, #2d2d2d)';
+            });
+            break;
+        case 'Gold':
+            buttons.forEach(button => {
+                button.style.background = '#ffd700';
+                button.style.backgroundImage = 'linear-gradient(to bottom, #ffd700, #b8860b)';
+            });
+            break;
+    }
+    
+    document.getElementById("gameBody").style.backgroundImage = `url('Images/CardStyles/${style}/blackJackGameBackground.jpg')`;
+}
+
 //Function to start the game and reset the hands and scores
 function startGame() {
     document.getElementById("cardDeck").style.display = "block";
@@ -33,7 +186,9 @@ function startGame() {
     document.getElementById("dealButton").style.display = "block";
     document.getElementById("betControls").style.display = "flex";
     document.getElementById("gameBody").style.backgroundImage = `url('Images/CardStyles/${getCardStyle()}/blackJackGameBackground.jpg')`;
-    document.getElementById("playerCash").innerHTML = "Player Cash: $" + getPlayerCash();
+    document.getElementById("playerCash").innerHTML = getCurrentUsername() ? 
+        `${getCurrentUsername()}'s Cash: $${getPlayerCash()}` : 
+        `Player Cash: $${getPlayerCash()}`;
     setCurrentBet(0);
     document.getElementById("currentBet").innerHTML = "Current Bet: $" + getCurrentBet();
 }
@@ -254,14 +409,43 @@ function resetGame() {
 }
 
 //Function to show the result screen
-function showResultScreen(message, cashChange) {
+async function showResultScreen(message, cashChange) {
     setPlayerCash(getPlayerCash() + cashChange);
     document.getElementById("resultMessage").innerHTML = message;
-    document.getElementById("resultCash").innerHTML = "You " + (cashChange >= 0 ? "won" : "lost") + " $" + Math.abs(cashChange) + ". Your new total is $" + getPlayerCash();
+    document.getElementById("resultCash").innerHTML = "You " + 
+        (cashChange >= 0 ? "won" : "lost") + " $" + Math.abs(cashChange) + 
+        ". Your new total is $" + getPlayerCash();
     document.getElementById("resultScreen").style.display = "block";
-    document.getElementById("playerCash").innerHTML = "Player Cash: $" + getPlayerCash();
-    document.getElementById("hitButton").style.display = "none";
-    document.getElementById("stayButton").style.display = "none";
+    
+    const username = getCurrentUsername();
+    if (username) {
+        try {
+            // Update leaderboard stats
+            await fetch('http://localhost:3000/api/leaderboard/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    cashChange: cashChange,
+                    gameWon: cashChange > 0,
+                    currentCash: getPlayerCash(),
+                    bankrupt: getPlayerCash() <= 0
+                })
+            });
+
+            // Update UI with username
+            document.getElementById("playerCash").innerHTML = 
+                `${username}'s Cash: $${getPlayerCash()}`;
+        } catch (error) {
+            console.error('Error updating stats:', error);
+        }
+    } else {
+        document.getElementById("playerCash").innerHTML = 
+            `Player Cash: $${getPlayerCash()}`;
+    }
+
     if (getPlayerCash() <= 0) {
         showLostScreen();
     }
@@ -316,52 +500,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.getElementById("defaultStyle").addEventListener("click", () => {
-        setCardStyle("Default");
-        document.getElementById("cardDeck").src = "Images/CardStyles/Default/card_deck.png";
-        setFlippedCard("Images/CardStyles/Default/red_card_back.png");
-        document.querySelectorAll('.button, .menuButton, #startButton, #dealButton, #openMenu').forEach(button => {
-            button.style.background = '#ff1212';
-            button.style.backgroundImage = 'linear-gradient(to bottom, #ff1212, #9e2929)';
-        });
-        document.getElementById("gameBody").style.backgroundImage = `url('Images/CardStyles/${getCardStyle()}/blackJackGameBackground.jpg')`;
+    document.getElementById("defaultStyle").addEventListener("click", async () => {
+        applyCardStyle("Default");
         document.getElementById("styleScreen").style.display = "none";
+        await updateLastStyle("Default");
     });
 
-    document.getElementById("blackandwhiteStyle").addEventListener("click", () => {
-        setCardStyle("BlackAndWhite");
-        document.getElementById("cardDeck").src = "Images/CardStyles/BlackAndWhite/card_deck.png";
-        setFlippedCard("Images/CardStyles/BlackAndWhite/red_card_back.png");
-        document.querySelectorAll('.button, .menuButton, #startButton, #dealButton, #openMenu').forEach(button => {
-            button.style.background = '#4a4a4a';
-            button.style.backgroundImage = 'linear-gradient(to bottom, #4a4a4a, #2d2d2d)';
-        });
-        document.getElementById("gameBody").style.backgroundImage = `url('Images/CardStyles/${getCardStyle()}/blackJackGameBackground.jpg')`;
+    document.getElementById("blackandwhiteStyle").addEventListener("click", async () => {
+        applyCardStyle("BlackAndWhite");
         document.getElementById("styleScreen").style.display = "none";
+        await updateLastStyle("BlackAndWhite");
     });
 
-    document.getElementById("darkStyle").addEventListener("click", () => {
-        setCardStyle("Dark");
-        document.getElementById("cardDeck").src = "Images/CardStyles/Dark/card_deck.png";
-        setFlippedCard("Images/CardStyles/Dark/red_card_back.png");
-        document.querySelectorAll('.button, .menuButton, #startButton, #dealButton, #openMenu').forEach(button => {
-            button.style.background = '#4a4a4a';
-            button.style.backgroundImage = 'linear-gradient(to bottom, #4a4a4a, #2d2d2d)';
-        });
-        document.getElementById("gameBody").style.backgroundImage = `url('Images/CardStyles/${getCardStyle()}/blackJackGameBackground.jpg')`;
+    document.getElementById("darkStyle").addEventListener("click", async () => {
+        applyCardStyle("Dark");
         document.getElementById("styleScreen").style.display = "none";
+        await updateLastStyle("Dark");
     });
 
-    document.getElementById("goldStyle").addEventListener("click", () => {
-        setCardStyle("Gold");
-        document.getElementById("cardDeck").src = "Images/CardStyles/Gold/card_deck.png";
-        setFlippedCard("Images/CardStyles/Gold/red_card_back.png");
-        document.querySelectorAll('.button, .menuButton, #startButton, #dealButton, #openMenu').forEach(button => {
-            button.style.background = '#ffd700';
-            button.style.backgroundImage = 'linear-gradient(to bottom, #ffd700, #b8860b)';
-        });
-        document.getElementById("gameBody").style.backgroundImage = `url('Images/CardStyles/${getCardStyle()}/blackJackGameBackground.jpg')`;
+    document.getElementById("goldStyle").addEventListener("click", async () => {
+        applyCardStyle("Gold");
         document.getElementById("styleScreen").style.display = "none";
+        await updateLastStyle("Gold");
     });
 
     document.getElementById("shopButton").addEventListener("click", () => {
@@ -378,34 +538,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    document.getElementById("blackandwhitebuy").addEventListener("click", () => {
-        if (getPlayerCash()> 150) {
+    document.getElementById("blackandwhitebuy").addEventListener("click", async () => {
+        if (getPlayerCash() > 150) {
             setPlayerCash(getPlayerCash() - 150);
             setBlackAndWhiteStyle(true);
             document.getElementById("blackandwhitebuy").style.display = "none";
             document.getElementById("blackandwhiteStyle").style.display = "block";
+            await updatePlayerData();
         }
-        document.getElementById("playerCash").innerHTML = "Player Cash: $" + getPlayerCash();
+        document.getElementById("playerCash").innerHTML = getCurrentUsername() ? 
+            `${getCurrentUsername()}'s Cash: $${getPlayerCash()}` : 
+            `Player Cash: $${getPlayerCash()}`;
     });
 
-    document.getElementById("darkbuy").addEventListener("click", () => {
+    document.getElementById("darkbuy").addEventListener("click", async () => {
         if (getPlayerCash() > 200) {
             setPlayerCash(getPlayerCash() - 200);
             setDarkStyle(true);
             document.getElementById("darkbuy").style.display = "none";
             document.getElementById("darkStyle").style.display = "block";
+            await updatePlayerData();
         }
-        document.getElementById("playerCash").innerHTML = "Player Cash: $" + getPlayerCash();
+        document.getElementById("playerCash").innerHTML = getCurrentUsername() ? 
+            `${getCurrentUsername()}'s Cash: $${getPlayerCash()}` : 
+            `Player Cash: $${getPlayerCash()}`;
     });
 
-    document.getElementById("goldbuy").addEventListener("click", () => {
+    document.getElementById("goldbuy").addEventListener("click", async () => {
         if (getPlayerCash() > 250) {
             setPlayerCash(getPlayerCash() - 250);
             setGoldStyle(true);
             document.getElementById("goldbuy").style.display = "none";
             document.getElementById("goldStyle").style.display = "block";
+            await updatePlayerData();
         }
-        document.getElementById("playerCash").innerHTML = "Player Cash: $" + getPlayerCash();
+        document.getElementById("playerCash").innerHTML = getCurrentUsername() ? 
+            `${getCurrentUsername()}'s Cash: $${getPlayerCash()}` : 
+            `Player Cash: $${getPlayerCash()}`;
     });
 
     document.getElementById("closeShop").addEventListener("click", () => {
@@ -429,7 +598,8 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         document.getElementById("signInError").style.display = "block";
     });
-
+    document.getElementById("signInForm").addEventListener("submit", handleSignIn);
+    document.getElementById("createAccountForm").addEventListener("submit", handleCreateAccount);
     document.getElementById("createAccount").addEventListener("click", () => {
         document.getElementById("menuScreen").style.display = "none";
         document.getElementById("createAccountScreen").style.display = "block";
@@ -456,7 +626,189 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    document.getElementById("signOut").addEventListener("click", async () => {
+        try {
+            const response = await fetch('http://localhost:3000/api/signout', {
+                method: 'POST',
+                credentials: 'include'
+            });
+
+            if (!response.ok) {
+                throw new Error('Sign out failed');
+            }
+
+            // Reset user state
+            setCurrentUsername('');
+            setPlayerCash(100);
+            setBlackAndWhiteStyle(false);
+            setDarkStyle(false);
+            setGoldStyle(false);
+            setCardStyle('Default');
+
+            // Reset shop display
+            document.getElementById("blackandwhitebuy").style.display = "block";
+            document.getElementById("darkbuy").style.display = "block";
+            document.getElementById("goldbuy").style.display = "block";
+            
+            // Reset style buttons
+            document.getElementById("blackandwhiteStyle").style.display = "none";
+            document.getElementById("darkStyle").style.display = "none";
+            document.getElementById("goldStyle").style.display = "none";
+
+            // Update UI
+            document.getElementById('signIn').style.display = 'block';
+            document.getElementById('signOut').style.display = 'none';
+            document.getElementById('createAccount').style.display = 'block';
+            document.getElementById('menuScreen').style.display = 'none';
+            document.getElementById('playerCash').innerHTML = 'Player Cash: $100';
+
+            // Reset game state
+            resetGame();
+
+            // Show signed out message
+            alert('Signed out successfully');
+
+        } catch (error) {
+            console.error('Sign out error:', error);
+            alert('Error signing out');
+        }
+    });
+
+    // Add leaderboard button handler
+    document.getElementById("leaderboard").addEventListener("click", async () => {
+        document.getElementById("menuScreen").style.display = "none";
+        document.getElementById("leaderboardScreen").style.display = "block";
+        await updateLeaderboards();
+    });
+
+    document.getElementById("closeLeaderboard").addEventListener("click", () => {
+        document.getElementById("leaderboardScreen").style.display = "none";
+        document.getElementById("menuScreen").style.display = "block";
+    });
 });
+
+async function updatePlayerData() {
+    const username = getCurrentUsername();
+    if (!username) return;
+
+    try {
+        const response = await fetch('http://localhost:3000/api/update-player', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                username: username,
+                playerCash: getPlayerCash(),
+                styles: {
+                    blackAndWhite: getBlackAndWhiteStyle(),
+                    dark: getDarkStyle(),
+                    gold: getGoldStyle()
+                }
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update player data');
+        }
+    } catch (error) {
+        console.error('Error updating player data:', error);
+    }
+}
+
+// Add function to update last style in database
+async function updateLastStyle(style) {
+    const username = getCurrentUsername();
+    if (!username) return;
+
+    try {
+        const response = await fetch('http://localhost:3000/api/update-style', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                username: username,
+                style: style
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update style preference');
+        }
+    } catch (error) {
+        console.error('Error updating style preference:', error);
+    }
+}
+
+async function updateLeaderboards() {
+    try {
+        // Fetch global leaderboard
+        const globalResponse = await fetch('http://localhost:3000/api/leaderboard/global');
+        const globalData = await globalResponse.json();
+
+        const tbody = document.querySelector('#globalLeaderboardTable tbody');
+        tbody.innerHTML = '';
+        globalData.forEach((player, index) => {
+            const winnings = player.total_winnings || 0;
+            tbody.innerHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${player.username}</td>
+                    <td>$${winnings.toLocaleString()}</td>
+                </tr>
+            `;
+        });
+
+        // Fetch personal stats if logged in
+        const username = getCurrentUsername();
+        if (username) {
+            document.getElementById("personalStats").style.display = "block";
+            const personalResponse = await fetch(`http://localhost:3000/api/leaderboard/personal/${username}`);
+            const stats = await personalResponse.json();
+
+            // Handle potential null/undefined values
+            document.getElementById("highestCash").textContent = (stats.highest_cash || 0).toLocaleString();
+            document.getElementById("totalCashEarned").textContent = (stats.total_winnings || 0).toLocaleString();
+            document.getElementById("timesBankrupt").textContent = stats.times_bankrupt || 0;
+            document.getElementById("playerRank").textContent = stats.global_rank || 'N/A';
+            document.getElementById("gamesPlayed").textContent = stats.games_played || 0;
+            document.getElementById("gamesWon").textContent = stats.games_won || 0;
+            document.getElementById("winRate").textContent = 
+                stats.games_played ? ((stats.games_won / stats.games_played * 100) || 0).toFixed(1) : '0.0';
+        } else {
+            document.getElementById("personalStats").style.display = "none";
+        }
+    } catch (error) {
+        console.error('Error updating leaderboards:', error);
+    }
+}
+
+// Update stats after each game
+async function updatePlayerStats(cashChange, gameWon = false) {
+    const username = getCurrentUsername();
+    if (!username) return;
+
+    try {
+        await fetch('http://localhost:3000/api/leaderboard/update', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                username: username,
+                cashChange: cashChange,
+                gameWon: gameWon,
+                bankrupt: getPlayerCash() <= 0
+            })
+        });
+    } catch (error) {
+        console.error('Error updating player stats:', error);
+    }
+}
 
 export {
     startGame,
