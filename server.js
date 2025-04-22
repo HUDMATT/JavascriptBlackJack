@@ -325,6 +325,32 @@ app.post('/api/leaderboard/update', async (req, res) => {
     }
 });
 
+// Delete account endpoint
+app.post('/api/delete-account', async (req, res) => {
+    try {
+        const { username } = req.body;
+
+        if (!username) {
+            return res.status(400).json({ error: 'Username is required' });
+        }
+
+        // Delete from Leaderboards table
+        await pool.execute('DELETE FROM Leaderboards WHERE user_id = (SELECT user_id FROM Users WHERE username = ?)', [username]);
+
+        // Delete from Users table
+        const [result] = await pool.execute('DELETE FROM Users WHERE username = ?', [username]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.json({ message: 'Account deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting account:', error);
+        res.status(500).json({ error: 'Failed to delete account' });
+    }
+});
+
 // Start server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);

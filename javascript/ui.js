@@ -140,6 +140,7 @@ function handleSignInSuccess(data) {
     document.getElementById('signIn').style.display = 'none';
     document.getElementById('signOut').style.display = 'block';
     document.getElementById('createAccount').style.display = 'none';
+    document.getElementById('deleteAccount').style.display = 'block'; 
     document.getElementById('playerCash').innerHTML = `${data.username}'s Cash: $${getPlayerCash()}`;
     document.getElementById('signInForm').reset();
 }
@@ -685,6 +686,48 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("closeLeaderboard").addEventListener("click", () => {
         document.getElementById("leaderboardScreen").style.display = "none";
         document.getElementById("menuScreen").style.display = "block";
+    });
+
+    document.getElementById("deleteAccount").addEventListener("click", async () => {
+        const confirmation = confirm("Are you sure you want to delete your account? This action cannot be undone.");
+        if (!confirmation) return;
+
+        const username = getCurrentUsername();
+        if (!username) {
+            alert("No user is currently logged in.");
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:3000/api/delete-account', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to delete account');
+            }
+
+            alert('Account deleted successfully');
+            setCurrentUsername('');
+            setPlayerCash(100);
+            resetGame();
+            
+            document.getElementById('signIn').style.display = 'block';
+            document.getElementById('signOut').style.display = 'none';
+            document.getElementById('createAccount').style.display = 'block';
+            document.getElementById('deleteAccount').style.display = 'none';
+            document.getElementById('menuScreen').style.display = 'none';
+            document.getElementById('playerCash').innerHTML = 'Player Cash: $100';
+
+        } catch (error) {
+            console.error('Error deleting account:', error);
+            alert('Error deleting account: ' + error.message);
+        }
     });
 });
 
